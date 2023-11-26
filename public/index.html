@@ -1,29 +1,99 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>MemGPT UI</title>
-  <link rel="stylesheet" href="./style.css">
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<body>
-  <h3>MemGPT agent_9</h3>
-  <div class="chat">
-    <div class="messages">
-      <ul class="message-list">
-
-      </ul>
-      <div class="message-input">
-        <input type="text" placeholder="Type your message..." />
-        <button type="button" class="btn">Send</button>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot UI with Sidebar</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!-- Header -->
+      <div class="row heading">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+          <span class="h1">MemGPT-UI</span>
+        </div>
+        <div class="col-md-1">
+          <span class="h2">agent_9</span>
+        </div>
+        <div class="col-md-3">
+          <div class="float-end">
+            <button class="btn btn-primary" type="button" id="clear-button">
+              Settings
+            </button>
+            <button class="btn btn-primary" type="button" id="save-button">
+              Export
+            </button>
+            <button class="btn btn-primary" type="button" id="load-button">
+              Help
+            </button>
+          </div>
+        </div>
+        <hr />
+      </div>
+      <div class="row chat-container">
+        <!-- 2 columns - Column 1-->
+        <div class="col-md-2 sidebar">
+          <!-- Sidebar content goes here -->
+          <!-- Rounded switch -->
+          <div class="row">
+            <span class="h4">agent_9</span>
+          </div>
+          <div class="row g-0">
+            <div class="col-md-9">Show internal dialog</div>
+            <div class="col-md-2">
+              <label class="switch">
+                <input type="checkbox" id="internal-dialog" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+          <div class="row g-0">
+            <div class="col-md-9">Show function calls</div>
+            <div class="col-md-2">
+              <label class="switch">
+                <input type="checkbox" id="functioon-call" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- 2 columns - Column 2-->
+        <div class="col-md-9">
+          <!-- 2 rows - Row 1 Chat Area -->
+          <div class="row">
+            <div id="chat-area" class="col-md-12 chat-area"></div>
+            <!-- 2 rows - Row 2 Input Area -->
+            <div class="row">
+              <div class="col-md-12 input-group mb-3 input-area">
+                <!-- Input box and send button -->
+                <input
+                  id="user-input"
+                  type="text"
+                  class="form-control"
+                  placeholder="Type your message..."
+                  aria-label="Type your message"
+                  aria-describedby="send-button" />
+                <button
+                  id="send-btn"
+                  class="btn btn-primary"
+                  type="button"
+                  id="send-button">
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-<!-- partial -->
-  <script  src="./script.js"></script>
-
-</body>
+    <!-- Bootstrap JS and dependencies (Optional, for interactive elements) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
 </html>

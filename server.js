@@ -18,7 +18,7 @@ const ws =  new WebSocket.Server({
 })
 
 ws.on('connection', (socket) => {
-    console.log(`New connection test: ${socket.id}`)
+    console.log(`New connection`)
 
     socket.on('message', (data) => {      
         console.log(`New message from ${socket.id}: ${data}`)        
