@@ -13,6 +13,8 @@ body {
 .input-area {
   height: 5vh;
   background-color: #aaacc4;
+  margin-left: 30px;
+  padding-left: 0
 }
 
 .sidebar {
@@ -20,7 +22,7 @@ body {
   margin: 0 0 0 -20px;
   padding: 20px 10px 0px 20px;
   border-radius: 10px;
-  min-width: 255px;
+  width: 254px;
 }
 
 .chat-area {
@@ -29,6 +31,7 @@ body {
   height: 90vh;
   overflow-y: auto;
   background-color: #aaacc4;
+  margin-left: 20px;
 }
 
 .message-container {
