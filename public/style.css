@@ -10,13 +10,6 @@ body {
   margin-left: 0;
 }
 
-.input-area {
-  height: 5vh;
-  background-color: #aaacc4;
-  margin-left: 30px;
-  padding-left: 0
-}
-
 .sidebar {
   background-color: #f8f9fa;
   margin: 0 0 0 -20px;
@@ -73,6 +66,12 @@ body {
   font-size: 0.7em;
 }
 
+.input-area {
+  height: 5vh;
+  background-color: #aaacc4;
+  margin-left: 15px;
+}
+
 .settings {
   border-radius: 10px;
   background-color: #f8f9fa;
@@ -80,12 +79,13 @@ body {
 
 .btn {
   margin-top: 5px;
+  width: 55px;
 }
 
 .input-area .btn {
   border-radius: 8px;
-  margin: 0 5px 0 5px;
-  padding-right: 0 5px 0 5px;
+  margin: 0 15px 0 5px;
+  padding-right: 5px;
 }
 
 .heading {
@@ -160,4 +160,15 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+/* Font-Awesome */
+.fa-solid {
+  background-color: #5b6066;
+  color: white;
+}
+
+#send-btn .fa-solid {
+  background-color: #4764fa;
+  color: white;
 }
