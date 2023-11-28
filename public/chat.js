@@ -5,17 +5,20 @@ const internalDialogCtl = document.getElementById('internal-dialog')
 const functionCallCtl = document.getElementById('functioon-call')
 const socketPort = 8282
 const socket = new WebSocket(`ws://127.0.0.1:${socketPort}`)
+let user = 'Jon'
+let agent = 'Bot'
 
 btn.disabled = true
 
 socket.onopen = () => {
   console.log('connected')
   socket.send(JSON.stringify({type: 'command', command: 'load_agent', name: 'agent_9'}))
+  setTimeout(() => {
+    writeLine('agent_response', agent, 'How can I help you?', 'bot-message')
+  }, 2000)
   btn.disabled = false
 }
 
-writeLine('Bot', 'How can I help you?', 'bot-message')
-let user = 'Jon'
 
 // Button/Enter Key
 btn.addEventListener('click', sendMessage)
@@ -28,7 +31,7 @@ function sendMessage() {
   const msg = input.value
   socket.send(JSON.stringify({type: 'user_message', message: msg, agent_name: 'agent_9'}))
   input.value = ''
-  writeLine(user, msg, 'user-message')
+  writeLine('', user, msg, 'user-message')
 }
 
 socket.onmessage = function(event) {
@@ -38,11 +41,12 @@ socket.onmessage = function(event) {
 
   console.log(msg)
   switch (msg.type) {
-    case msg.type === 'agent_response_start' || msg.type === 'agent_response_end':
+    case 'agent_response_start':
+    case 'agent_response_end':
       writeHr()
       break
     case 'command_response':
-      writeLine(msg.type,  msg.message || msg.status, 'bot-function small')
+      writeLine(msg.type,  agent, msg.message || msg.status, 'bot-function small')
       break
     case 'agent_response':
       switch (msg.message_type) {
@@ -51,31 +55,37 @@ socket.onmessage = function(event) {
             const functionName = msg.message.split('(')
             msg.message = functionName[0].includes('send_message') ? functionName[0]+ '()' : msg.message
             if (msg.message && !msg.message.includes('Success: None')) {
-              writeLine('', msg.message, 'bot-function small')
+              writeLine('', agent, msg.message, 'bot-function small')
             }
           }
 
           break
         case 'internal_monologue':
           if (showInternalDialog) {
-            writeLine('',  msg.message, 'bot-thought')
+            writeLine('', agent,  msg.message, 'bot-thought')
           }
           
           break
         default:
-          writeLine(msg.type,  msg.message || msg.status, 'bot-message')
+          writeLine(msg.message_type, agent, msg.message || msg.status, 'bot-message')
 
       }
   } 
 }
 
-function writeLine(user, text, className) {
+function icon(user) {
+    const avatar = user === agent ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>'
+    return '<div class="avatar col-md-1">' + avatar + '</div>'
+}
+
+function writeLine(messageType, user, text, className) {
   if (text && text != 'Success: None') {
     const container = document.createElement('div')
-    container.classList.add('message-container')
+    container.classList.add('message-container', 'row')
+    container.innerHTML = (icon(user))
     const message = document.createElement('div')
-    addClass(message, className)    
-    message.innerHTML = user + ': ' + text
+    addClass(message, className)
+    message.innerHTML = '<div>' + user + window.markdown(text) + '</div>'
     container.appendChild(message)
     messages.appendChild(container)
     messages.scrollTop = messages.scrollHeight
@@ -89,7 +99,7 @@ function writeHr() {
 }
 
 function addClass(element, className) {
-  element.classList.add('message')
+  element.classList.add('message', "col-md-11")
   const classNames = className.split(' ')
 
   if (Array.isArray(classNames)) {

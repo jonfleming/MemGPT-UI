@@ -35,13 +35,13 @@ body {
   padding: 10px;
   border-radius: 8px;
   max-width: 70%;
+  white-space: pre-line;
 }
 
 .user-message {
   background-color: #495056;
   color: #fff;
   align-self: flex-end;
-  margin-left: 30px;
 }
 
 .bot-message {
@@ -97,6 +97,10 @@ body {
 .heading hr {
   margin-bottom: 0;
 }
+
+.avatar {
+  width: 50px;
+} 
 
 /* The switch - the box around the slider */
 .switch {
