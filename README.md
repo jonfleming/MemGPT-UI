@@ -1,7 +1,7 @@
 # MemGPT UI
 
 This is a simple HTML UI with vanilla JavaScript to connect to MemGPT's websocket_server.  It
-allows you to chat with MemGPT and, optionally, see inner thoughts and OpenAI function calls.
+allows you to chat with MemGPT and, optionally, see *inner thoughts* and OpenAI *function calls*.
 
 MemGPT UI expects MemGPT websocket_server.py to be listening on 127.0.0.1:8282 for websocket
 connections.
